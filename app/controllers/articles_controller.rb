@@ -26,7 +26,7 @@ before_action :set_article, only: [:edit, :update, :show, :destroy]
 
   def update
     if @article.update(article_params)
-      flash[:notice] = "Article was sucessfully update"
+      flash[:success] = "Article was sucessfully updated"
       redirect_to article_path(@article)
     else
       render :edit
