@@ -14,12 +14,13 @@ class PracticeController < ApplicationController
       flash[:notice] = "Practice successfully saved."
     else
       render :new
+    end
   end
 
   def update
     @practice = Practice.find(params[:id])
     if @practice.update(practice_params)
-      
+  end
 
   private
     def practice_params
