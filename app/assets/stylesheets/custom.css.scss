@@ -13,9 +13,14 @@ $navbar-default-bg: black;
 }
 
 #logo.hover{
-  color:#fff;
+  color:green;
   text-decoration:none;
 }
+
+#red-border-hover:hover{
+  border:1px solid red;
+}
+
 .center {
   text-align:center;
 }
@@ -32,6 +37,10 @@ $navbar-default-bg: black;
   margin-bottom:30px;
   letter-spacing:-1px;
   font-weight:bold;
+}
+
+.button-border{
+  border:1px solid black;
 }
 
 .descirption {
@@ -56,7 +65,7 @@ $navbar-default-bg: black;
 
 .description{
   margin-top:0;
-  
+
 }
 footer {
   margin-top: 45px;
