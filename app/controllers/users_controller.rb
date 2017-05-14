@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :create, :update]
+  before_action :set_user, only: [:show, :edit, :update]
   before_action :require_same_user, only: [:edit, :update]
   def new
     @user = User.new
@@ -19,9 +19,12 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user = User.new(user_params)
+
     if @user.save
+      session[:user_id] = @user.id
       flash[:success] = "Your account was created successfully"
-      redirect_to articles_path
+      redirect_to user_path(@user)
     else
       render 'new'
     end
@@ -43,6 +46,7 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+      logger.debug "----- set_user -----"
     end
 
     def require_same_user
