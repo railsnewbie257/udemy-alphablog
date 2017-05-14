@@ -9,6 +9,11 @@ class UsersController < ApplicationController
     logger.debug ">-----" + @user.inspect
   end
 
+  def index
+    @users = User.all
+  end
+
+
   def edit
     @user = User.find(params[:id])
   end

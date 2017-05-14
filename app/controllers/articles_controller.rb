@@ -12,6 +12,7 @@ before_action :set_article, only: [:edit, :update, :show, :destroy]
   end
 
   def show
+    @article = Article.find(params[:id])
   end
 
   def create
