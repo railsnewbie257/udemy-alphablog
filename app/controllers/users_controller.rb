@@ -4,11 +4,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit
+  def show
     @user = User.find(params[:id])
+    logger.debug ">-----" + @user.inspect
   end
 
-  def show
+  def edit
+    @user = User.find(params[:id])
   end
 
   def create
