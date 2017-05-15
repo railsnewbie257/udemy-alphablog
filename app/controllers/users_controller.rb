@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_admin, only: [:destroy]
   def new
     @user = User.new
   end
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 3)
+    @users = User.paginate(page: params[:page], per_page: 2)
   end
 
 
@@ -31,12 +32,23 @@ class UsersController < ApplicationController
   end
   
   def update
+    if (@user.id == current_user.id)
+      flash[:danger]="You can not delete yourself"
+      redirect_to root_path
+    end
     if (@user.update(user_params))
       flash[:success] = "You account was updated successfully"
       redirect_to articles_path
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:danger]= "User and all articles created by user have been deleted"
+    redirect_to users_path
   end
 
   private
@@ -50,8 +62,15 @@ class UsersController < ApplicationController
     end
 
     def require_same_user
-      if @user != current_user
+      if @user != current_user and !current_user.admin?
         flash[:danger]="You can only edit your own account"
+        redirect_to root_path
+      end
+    end
+
+    def require_admin
+      if (logged_in? and !current_user.admin?)
+        flash[:danger]="You must be an admin"
         redirect_to root_path
       end
     end

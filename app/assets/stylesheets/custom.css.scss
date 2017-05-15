@@ -21,7 +21,7 @@ $navbar-default-bg: black;
   border:1px solid red;
 }
 
-.red-border{
+.redborder{
   border: 1px solid red;
 }
 
@@ -98,4 +98,11 @@ footer nav {
 
 footer ul{
   list-style:none;
+}
+
+.about{
+  margin-top:0;
+  padding:0;
+  color:red;
+  float:right;
 }
