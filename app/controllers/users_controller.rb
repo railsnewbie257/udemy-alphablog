@@ -33,13 +33,9 @@ class UsersController < ApplicationController
   end
   
   def update
-    if (@user.id == current_user.id)
-      flash[:danger]="You can not delete yourself"
-      redirect_to root_path
-    end
-    if (@user.update(user_params))
+    if (@user.id && @user.update(user_params))
       flash[:success] = "You account was updated successfully"
-      redirect_to articles_path
+      redirect_to users_path
     else
       render 'edit'
     end
@@ -60,7 +56,6 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
-      logger.debug "----- set_user -----"
     end
 
     def require_same_user

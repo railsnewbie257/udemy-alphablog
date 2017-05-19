@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
+    logger.debug "----- Category index -----"
     @categories = Category.all
     logger.debug "-----" + @categories.inspect
   end
