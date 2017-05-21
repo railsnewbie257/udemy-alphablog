@@ -1,13 +1,12 @@
 class CategoriesController < ApplicationController
 
   def show
-  
+    @categories=Category.find(params[:id])
   end
 
   def index
     logger.debug "----- Category index -----"
-    @categories = Category.all
-    logger.debug "-----" + @categories.inspect
+    @categories = Category.paginate(page: params[:page], per_page: 5)
   end
 
   def new
