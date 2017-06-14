@@ -3,7 +3,7 @@ before_action :require_admin, except: [:index, :show]
 
   def index
     logger.debug "----- Category index -----"
-    @categories = Category.paginate(page: params[:page], per_page: 5)
+    @categories = Category.all.paginate(page: params[:page], per_page: 5)
   end
 
   def new
