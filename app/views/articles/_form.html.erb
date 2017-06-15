@@ -25,17 +25,20 @@
             <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
               <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
             <% end %>
+            <%= f.collection_check_boxes(:food_ids, Food.all, :id, :food_name) do |cb| %>
+    <% cb.label(class: 'checkbox-inline input-checkbox') {cb.check_box (class: 'checkbox') + cb.text} %>
+    <% end %>
           </div>
         </div>
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <%= f.submit class: 'btn btn-primary btn-lg' %>
+          <%= f.submit class: 'btn btn-info btn-md' %>
         </div>
       </div>
     <% end %>
     <div class="col-xs-4 col-xs-offset-4">
-      [ <%= link_to "Cancel request and return to articles listing", articles_path %> ]
+      [ <%= link_to "Cancel request and return to articles listing", articles_path, class: 'btn btn-danger btn-md' %> ]
     </div>
   </div>
 </div>
